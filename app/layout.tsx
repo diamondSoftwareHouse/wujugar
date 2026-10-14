@@ -27,10 +27,9 @@ export default function RootLayout({
         </Suspense>
 
         {children}
-
         <Footer />
+        <Analytics />
       </body>
-      <Analytics />
     </html>
   );
 }
