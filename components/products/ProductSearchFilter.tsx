@@ -127,7 +127,7 @@ export default function ProductSearchFilter({
             onChange={(event) => handleSearchChange(event.target.value)}
             placeholder="Search by name, code, or description..."
             aria-label="Search products"
-            className="w-full min-w-0 rounded-xl border border-gray-200 bg-white py-3 pl-10 pr-4 text-sm text-black outline-none transition focus:border-[#ff277f]"
+            className="h-12 w-full appearance-none rounded-xl border border-gray-200 bg-white py-0 pl-10 pr-4 text-base text-black outline-none transition focus:border-[#ff277f]"
           />
         </label>
 
@@ -139,7 +139,7 @@ export default function ProductSearchFilter({
             onChange={(event) =>
               handleStockChange(event.target.value as StockFilter)
             }
-            className="w-full min-w-0 rounded-xl border border-gray-200 bg-white px-3 py-3 text-sm text-black outline-none focus:border-[#ff277f]"
+            className="h-12 w-full appearance-none rounded-xl border border-gray-200 bg-white px-3 py-0 text-base text-black outline-none focus:border-[#ff277f]"
           >
             <option value="all">All stock statuses</option>
             <option value="in-stock">In stock</option>
@@ -155,7 +155,7 @@ export default function ProductSearchFilter({
             onChange={(event) =>
               handleSortChange(event.target.value as SortOption)
             }
-            className="w-full min-w-0 rounded-xl border border-gray-200 bg-white px-3 py-3 text-sm text-black outline-none focus:border-[#ff277f]"
+            className="h-12 w-full appearance-none rounded-xl border border-gray-200 bg-white px-3 py-0 text-base text-black outline-none focus:border-[#ff277f]"
           >
             <option value="newest">Newest first</option>
             <option value="price-low">Price: low to high</option>
