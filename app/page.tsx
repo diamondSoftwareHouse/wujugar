@@ -1,4 +1,4 @@
-import HeroCarousel from '@/components/home/HeroCarousel';
+import HeroCarousel, { CarouselSlide } from '@/components/home/HeroCarousel';
 import NewArrivals from '@/components/home/NewArrivals';
 import BestSellers from '@/components/home/BestSellers';
 
@@ -9,6 +9,21 @@ import {
 
 export default async function Home() {
   let products: WebsiteProduct[] = [];
+
+  const slides: CarouselSlide[] = [
+    {
+      image: '/hero-shopping.jpg',
+      alt: 'Featured products at Wujugar',
+    },
+    {
+      image: '/hero-eating.jpg',
+      alt: 'New arrivals',
+    },
+    {
+      image: '/hero-sleeping.jpg',
+      alt: 'Featured collection',
+    },
+  ];
 
   try {
     const result = await getProducts({
@@ -27,7 +42,7 @@ export default async function Home() {
 
   return (
     <>
-      <HeroCarousel />
+      <HeroCarousel slides={slides} />
       <p className="text-center pt-10 text-primary text-xl">
         Wujugar မှကြိုဆိုပါ၏။
       </p>

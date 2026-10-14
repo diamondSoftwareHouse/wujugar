@@ -53,6 +53,7 @@ export async function getProducts({
     'i.user_id = $1::uuid',
     'i.is_active = TRUE',
     'i.is_displayed_on_website = TRUE',
+    `i.name NOT ILIKE '%Adopt me%'`,
   ];
 
   const values: unknown[] = [ownerId];
@@ -208,6 +209,7 @@ export async function getProductById(
           AND i.user_id = $2::uuid
           AND i.is_active = TRUE
           AND i.is_displayed_on_website = TRUE
+          AND i.name NOT ILIKE '%Adopt me%'
         LIMIT 1
       `,
       [id, ownerId],

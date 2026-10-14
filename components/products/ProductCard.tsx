@@ -7,9 +7,13 @@ import type { WebsiteProduct } from '@/repositories/product-repository';
 
 type Props = {
   product: WebsiteProduct;
+  basePath?: string;
 };
 
-export default function ProductCard({ product }: Props) {
+export default function ProductCard({
+  product,
+  basePath = '/products',
+}: Props) {
   const [activeImage, setActiveImage] = useState(0);
 
   const images =
@@ -18,7 +22,6 @@ export default function ProductCard({ product }: Props) {
         typeof image === 'string' && image.trim() !== '',
     ) ?? [];
 
-  // Support the old single-image property as a fallback.
   const productImages =
     images.length > 0 ? images : product.image ? [product.image] : [];
 
@@ -30,7 +33,8 @@ export default function ProductCard({ product }: Props) {
     : 'Price unavailable';
 
   const currentImage = productImages[activeImage] ?? productImages[0];
-  const productUrl = `/products/${product.id}`;
+
+  const productUrl = `${basePath.replace(/\/+$/, '')}/${product.id}`;
 
   function showPreviousImage(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
@@ -62,7 +66,6 @@ export default function ProductCard({ product }: Props) {
 
   return (
     <div className="group flex min-w-0 flex-col overflow-hidden rounded-xl border border-gray-200 bg-white transition duration-200 hover:-translate-y-1 hover:border-[#ff277f] hover:shadow-lg sm:rounded-2xl">
-      {/* Product image and image controls */}
       <div className="relative aspect-square overflow-hidden bg-gray-100">
         {currentImage ? (
           <Link
@@ -90,7 +93,6 @@ export default function ProductCard({ product }: Props) {
           </Link>
         )}
 
-        {/* Previous and next buttons are outside the image link */}
         {productImages.length > 1 && (
           <>
             <button
@@ -111,7 +113,6 @@ export default function ProductCard({ product }: Props) {
               <span aria-hidden="true">›</span>
             </button>
 
-            {/* Image indicators */}
             <div className="absolute bottom-2 left-1/2 z-10 flex -translate-x-1/2 items-center gap-1.5 rounded-full bg-black/40 px-2 py-1">
               {productImages.map((image, index) => (
                 <button
@@ -129,14 +130,12 @@ export default function ProductCard({ product }: Props) {
               ))}
             </div>
 
-            {/* Image counter */}
             <span className="pointer-events-none absolute right-2 top-2 z-10 rounded-full bg-black/50 px-2 py-1 text-[10px] font-medium text-white">
               {activeImage + 1}/{productImages.length}
             </span>
           </>
         )}
 
-        {/* Stock badge */}
         <span
           className={`pointer-events-none absolute left-2 top-2 z-10 rounded-full px-2 py-1 text-[10px] font-bold sm:left-3 sm:top-3 sm:text-xs ${
             inStock ? 'bg-white text-green-700' : 'bg-red-50 text-red-600'
@@ -146,7 +145,6 @@ export default function ProductCard({ product }: Props) {
         </span>
       </div>
 
-      {/* Product information */}
       <div className="flex flex-1 flex-col p-3 sm:p-4">
         <p className="mb-1 text-[10px] font-medium uppercase tracking-wider text-primary sm:text-xs">
           {product.item_code}

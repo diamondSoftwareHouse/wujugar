@@ -10,6 +10,7 @@ export default function Navbar() {
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/products', label: 'Products' },
+    { href: '/adopt-me', label: 'Adopt Me' },
   ];
 
   return (

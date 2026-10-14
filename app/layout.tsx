@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 import './globals.css';
 import Navbar from '@/components/general/Navbar';
 import Footer from '@/components/home/Footer';
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata: Metadata = {
   title: 'Wujugar Hamster စျေးဆိုင်',
@@ -29,6 +30,7 @@ export default function RootLayout({
 
         <Footer />
       </body>
+      <Analytics />
     </html>
   );
 }
