@@ -105,8 +105,8 @@ export default function ProductSearchFilter({
 
   return (
     <section>
-      <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-[1fr_200px_200px]">
-        <label className="relative block">
+      <div className="mb-6 grid grid-cols-1 gap-3 md:grid-cols-[minmax(0,1fr)_minmax(180px,0.35fr)] xl:grid-cols-[minmax(0,1fr)_200px_200px]">
+        <label className="relative block min-w-0">
           <span className="sr-only">Search products</span>
 
           <svg
@@ -127,11 +127,11 @@ export default function ProductSearchFilter({
             onChange={(event) => handleSearchChange(event.target.value)}
             placeholder="Search by name, code, or description..."
             aria-label="Search products"
-            className="w-full rounded-xl text-black border border-gray-200 bg-white py-3 pl-10 pr-4 text-sm outline-none transition focus:border-[#ff277f]"
+            className="w-full min-w-0 rounded-xl border border-gray-200 bg-white py-3 pl-10 pr-4 text-sm text-black outline-none transition focus:border-[#ff277f]"
           />
         </label>
 
-        <label className="block">
+        <label className="block min-w-0">
           <span className="sr-only">Filter by stock</span>
 
           <select
@@ -139,7 +139,7 @@ export default function ProductSearchFilter({
             onChange={(event) =>
               handleStockChange(event.target.value as StockFilter)
             }
-            className="w-full rounded-xl border border-gray-200 bg-white px-3 py-3 text-black text-sm outline-none focus:border-[#ff277f]"
+            className="w-full min-w-0 rounded-xl border border-gray-200 bg-white px-3 py-3 text-sm text-black outline-none focus:border-[#ff277f]"
           >
             <option value="all">All stock statuses</option>
             <option value="in-stock">In stock</option>
@@ -147,7 +147,7 @@ export default function ProductSearchFilter({
           </select>
         </label>
 
-        <label className="block">
+        <label className="block min-w-0">
           <span className="sr-only">Sort products</span>
 
           <select
@@ -155,7 +155,7 @@ export default function ProductSearchFilter({
             onChange={(event) =>
               handleSortChange(event.target.value as SortOption)
             }
-            className="w-full rounded-xl border border-gray-200 text-black bg-white px-3 py-3 text-sm outline-none focus:border-[#ff277f]"
+            className="w-full min-w-0 rounded-xl border border-gray-200 bg-white px-3 py-3 text-sm text-black outline-none focus:border-[#ff277f]"
           >
             <option value="newest">Newest first</option>
             <option value="price-low">Price: low to high</option>

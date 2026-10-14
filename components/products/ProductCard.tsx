@@ -106,7 +106,7 @@ export default function ProductCard({ product }: Props) {
 
         <span
           className={`absolute left-2 top-2 rounded-full px-2 py-1 text-[10px] font-bold sm:left-3 sm:top-3 sm:text-xs ${
-            inStock ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-600'
+            inStock ? 'bg-white text-green-700' : 'bg-red-50 text-red-600'
           }`}
         >
           {inStock ? 'In Stock' : 'Out of Stock'}

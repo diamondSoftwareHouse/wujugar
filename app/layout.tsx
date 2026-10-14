@@ -4,8 +4,8 @@ import Navbar from '@/components/general/Navbar';
 import Footer from '@/components/home/Footer';
 
 export const metadata: Metadata = {
-  title: 'Wujugar',
-  description: 'Hamster စျေးဆိုင်',
+  title: 'Wujugar Hamster စျေးဆိုင်',
+  description: 'Wujuga Hamster စျေးဆိုင်',
 };
 
 export default function RootLayout({
