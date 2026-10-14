@@ -4,8 +4,8 @@ import Navbar from '@/components/general/Navbar';
 import Footer from '@/components/home/Footer';
 
 export const metadata: Metadata = {
-  title: 'Kwisi POS',
-  description: 'Point of Sale Application',
+  title: 'Wujugar',
+  description: 'Hamster စျေးဆိုင်',
 };
 
 export default function RootLayout({
