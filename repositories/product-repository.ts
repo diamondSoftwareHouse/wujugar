@@ -27,6 +27,7 @@ export type ProductPageResult = {
   totalPages: number;
 };
 
+//Product အကုန်လုံး
 export async function getProducts({
   page = 1,
   pageSize = 24,
@@ -165,5 +166,56 @@ export async function getProducts({
   } catch (error) {
     console.error('Failed to fetch website products:', error);
     throw new Error('Unable to load products. Please try again later.');
+  }
+}
+
+//Product တစ်ခု
+export async function getProductById(
+  id: string,
+): Promise<WebsiteProduct | null> {
+  const ownerId = process.env.WEBSITE_OWNER_ID;
+
+  if (!ownerId) {
+    throw new Error('WEBSITE_OWNER_ID is not configured');
+  }
+
+  try {
+    const result = await pool.query<WebsiteProduct>(
+      `
+        SELECT
+          i.id,
+          i.item_code,
+          i.name,
+          i.description,
+          i.quantity,
+          i.selling_price,
+          i.image,
+          COALESCE(
+            (
+              SELECT array_agg(ii.url ORDER BY ii.id)
+              FROM auth.item_images ii
+              WHERE ii.item_id = i.id
+                AND ii.url IS NOT NULL
+            ),
+            CASE
+              WHEN NULLIF(i.image, '') IS NOT NULL
+                THEN ARRAY[i.image]
+              ELSE ARRAY[]::text[]
+            END
+          ) AS images
+        FROM auth.items i
+        WHERE i.id = $1
+          AND i.user_id = $2::uuid
+          AND i.is_active = TRUE
+          AND i.is_displayed_on_website = TRUE
+        LIMIT 1
+      `,
+      [id, ownerId],
+    );
+
+    return result.rows[0] ?? null;
+  } catch (error) {
+    console.error('Failed to fetch product details:', error);
+    throw new Error('Unable to load product details. Please try again.');
   }
 }
